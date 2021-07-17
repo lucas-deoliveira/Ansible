@@ -1,0 +1,13 @@
+---
+- hosts: sw_efape
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: run commands that require answering a prompt
+      cisco.ios.ios_command:
+        commands:
+          - command: clear counters
+            prompt: 'Clear "show interface" counters on all interfaces [confirm]'
+            answer: y
+

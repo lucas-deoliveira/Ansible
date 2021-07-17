@@ -1,0 +1,18 @@
+---
+- hosts: sw_see
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: configura mls qos
+      cisco.ios.ios_command:
+        commands:
+        - configure terminal
+        - mls qos map cos-dscp 0 8 16 24 32 46 48 56
+        - no mls qos
+        - int range g1/0/1-28
+        - no mls qos trust dscp
+        - end
+        - wr
+
+

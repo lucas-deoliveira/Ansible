@@ -1,0 +1,9 @@
+- hosts: fgt_teste
+  collections:
+    - fortinet.fortios
+ 
+  tasks:
+  - name: backup global settings
+    fortios_config:
+     backup: "yes"
+     backup_path: "/tmp/"

@@ -1,0 +1,11 @@
+---
+- hosts: fde_core02
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: Change acive HSRP Vlan400
+      ios_config:
+        lines:
+          - standby 40 priority 120
+        parents: Interface Vlan400

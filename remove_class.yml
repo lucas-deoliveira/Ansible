@@ -1,0 +1,14 @@
+---
+- hosts: sw_efape2960x
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: configura classes para marcacao pacotes do teams
+      cisco.ios.ios_command:
+        commands:
+        - configure terminal
+        - interface range g 1/0/1-22
+        - no service-policy input POLICY-MARK-IN
+        - end
+        - wr

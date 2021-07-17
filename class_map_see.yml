@@ -1,0 +1,27 @@
+---
+- hosts: sw_efape2960x
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: configura classes para marcacao pacotes do teams
+      cisco.ios.ios_command:
+        commands:
+        - configure terminal
+        - ip access-list extended ACL-TEAMS-AUDIO
+        - permit udp any range 50000 50019 any range 3478 3481
+        - ip access-list extended ACL-TEAMS-VIDEO
+        - permit udp any range 50020 50059 any range 3478 3481
+        - class-map match-any CLASS-TEAMS-AUDIO
+        - match access-group name ACL-TEAMS-AUDIO
+        - class-map match-any CLASS-TEAMS-VIDEO
+        - match access-group name ACL-TEAMS-VIDEO
+        - policy-map POLICY-MARK-IN
+        - class CLASS-TEAMS-AUDIO
+        - set dscp ef
+        - class CLASS-TEAMS-VIDEO
+        - set dscp cs5
+        - interface range g 1/0/1-22
+        - service-policy input POLICY-MARK-IN
+        - end
+        - wr

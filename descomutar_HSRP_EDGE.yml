@@ -1,0 +1,43 @@
+---
+- hosts: fde_edge02
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: Vira HSRP para o Sw_edge_internet_01
+      cisco.ios.ios_command:
+        commands:
+        - configure terminal
+        - int vlan 200
+        - no standby 20 priority 
+        - exit
+        - int vlan 2020
+        - no standby 220 priority 
+        - exit
+        - int vlan 2090
+        - no standby 209 priority 
+        - exit
+        - int vlan 480
+        - no standby 48 priority 
+        - exit
+        - int vlan 440
+        - no standby 44 priority
+        - exit
+        - int vlan 920
+        - no standby 92 priority
+        - exit
+        - int vlan 2005
+        - no standby 205 priority
+        - exit
+        - int vlan 2015
+        - no standby 215 priority
+        - int vlan 2040
+        - no standby 240 priority
+        - exit
+        - int vlan 2050
+        - no standby 205 priority
+        - end
+        - wr
+        
+
+

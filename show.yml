@@ -1,0 +1,17 @@
+---
+- hosts: sw_fde
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: Executar comandos no Cisco Router
+      block:
+      - name: Primeiro Passo - Show
+        cli_command:
+          command: sh boot
+        register: result
+
+      - name: Mostrar os Resultados
+        debug:
+          var: result.stdout_lines
+      

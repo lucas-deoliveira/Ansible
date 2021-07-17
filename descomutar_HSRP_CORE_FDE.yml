@@ -1,0 +1,14 @@
+---
+- hosts: fde_core02
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: Vira HSRP para o fde_core_01
+      cisco.ios.ios_command:
+        commands:
+        - configure terminal
+        - int vlan 400
+        - no standby 40 priority
+        - end
+        - wr

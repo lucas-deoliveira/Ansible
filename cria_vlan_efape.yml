@@ -1,0 +1,18 @@
+---
+- hosts: sw_efape
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: Cria vlans 130,140 e 150
+      cisco.ios.ios_command:
+        commands:
+          - configure terminal
+          - vlan 130
+          - name Estudios
+          - vlan 140
+          - name Vanzolini
+          - vlan 150
+          - name servidores-vanzolini
+          - end
+          - wr

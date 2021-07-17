@@ -1,0 +1,66 @@
+---
+- hosts: fde_edge02
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: Change acive HSRP Vlan200
+      ios_config:
+        lines:
+          - standby 20 priority 120
+        parents: Interface Vlan200
+
+    - name: Change acive HSRP Vlan2020
+      ios_config:
+        lines: 
+          - standby 220 priority 120
+        parents: Interface Vlan2020
+
+    - name: Change acive HSRP Vlan2090
+      ios_config:
+        lines: 
+          - standby 209 priority 120
+        parents: Interface Vlan2090
+
+    - name: Change acive HSRP Vlan480
+      ios_config:
+        lines: 
+          - standby 48 priority 120
+        parents: Interface Vlan480
+
+    - name: Change acive HSRP Vlan440
+      ios_config:
+        lines: 
+          - standby 44 priority 120
+        parents: Interface Vlan440
+
+    - name: Change acive HSRP Vlan920
+      ios_config:
+        lines:
+          - standby 92 priority 120
+        parents: Interface Vlan920
+     
+     - name: Change acive HSRP Vlan2005
+      ios_config:
+        lines:
+          - standby 205 priority 120
+        parents: Interface Vlan2005
+
+    - name: Change acive HSRP Vlan2015
+      ios_config:
+        lines: 
+          - standby 215 priority 120
+        parents: Interface Vlan2015
+   
+     - name: Change acive HSRP Vlan2040
+      ios_config:
+        lines:
+          - standby 240 priority 120
+        parents: Interface Vlan2040
+ 
+      - name: Change acive HSRP Vlan2050
+      ios_config:
+        lines:
+          - standby 205 priority 120
+        parents: Interface Vlan2050
+
